@@ -29,8 +29,8 @@ extension NSData {
             return nil;
         }
     
-        let pageWidth: Double = Double(image.size.width) * Double(image.scale) * Double(defualtResolution) / horizontalResolution
-        let pageHeight: Double = Double(image.size.height) * Double(image.scale) * Double(defualtResolution) / verticalResolution
+        let pageWidth: Double = Double(image.size.width) * Double(image.scale) * Double(defaultResolution) / horizontalResolution
+        let pageHeight: Double = Double(image.size.height) * Double(image.scale) * Double(defaultResolution) / verticalResolution
         
         let pdfFile: NSMutableData = NSMutableData()
         
@@ -55,8 +55,8 @@ extension NSData {
             return nil
         }
         
-        var imageWidth: Double = Double(image.size.width) * Double(image.scale) * Double(defualtResolution) / resolution
-        var imageHeight: Double = Double(image.size.height) * Double(image.scale) * Double(defualtResolution) / resolution
+        var imageWidth: Double = Double(image.size.width) * Double(image.scale) * Double(defaultResolution) / resolution
+        var imageHeight: Double = Double(image.size.height) * Double(image.scale) * Double(defaultResolution) / resolution
     
         let sx: Double = imageWidth / Double(maxBoundRect.size.width)
         let sy: Double = imageHeight / Double(maxBoundRect.size.height)
