@@ -17,12 +17,10 @@ extension NSData {
         return convertImageToPDF(image, resolution: 96)
     }
     
-    
     class func convertImageToPDF(image: UIImage, resolution: Double) -> NSData? {
         return convertImageToPDF(image, horizontalResolution: resolution, verticalResolution: resolution)
     }
 
-    
     class func convertImageToPDF(image: UIImage, horizontalResolution: Double, verticalResolution: Double) -> NSData? {
         
         if horizontalResolution <= 0 || verticalResolution <= 0 {
@@ -47,7 +45,7 @@ extension NSData {
     
         return pdfFile
     }
-    
+
     class func convertImageToPDF(image: UIImage, resolution: Double, maxBoundRect: CGRect, pageSize: CGSize) -> NSData? {
         
         if resolution <= 0 {
