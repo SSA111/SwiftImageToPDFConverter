@@ -28,7 +28,7 @@ extension NSData {
         if horizontalResolution <= 0 || verticalResolution <= 0 {
             return nil;
         }
-    
+
         let pageWidth: Double = Double(image.size.width) * Double(image.scale) * Double(defaultResolution) / horizontalResolution
         let pageHeight: Double = Double(image.size.height) * Double(image.scale) * Double(defaultResolution) / verticalResolution
         
@@ -47,7 +47,6 @@ extension NSData {
     
         return pdfFile
     }
-    
     
     class func convertImageToPDF(image: UIImage, resolution: Double, maxBoundRect: CGRect, pageSize: CGSize) -> NSData? {
         
