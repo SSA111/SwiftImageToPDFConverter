@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-let defualtResolution: Int = 72
+let defaultResolution: Int = 72
 
 extension NSData {
     
@@ -60,15 +60,13 @@ extension NSData {
     
         let sx: Double = imageWidth / Double(maxBoundRect.size.width)
         let sy: Double = imageHeight / Double(maxBoundRect.size.height)
-    
-        // At least one image edge is larger than maxBoundsRect
+
         if sx > 1 || sy > 1 {
             let maxScale: Double = sx > sy ? sx : sy
             imageWidth = imageWidth / maxScale
             imageHeight = imageHeight / maxScale
         }
-    
-        // Put the image in the top left corner of the bounding rectangle
+
         let imageBox: CGRect = CGRectMake(maxBoundRect.origin.x, maxBoundRect.origin.y + maxBoundRect.size.height - CGFloat(imageHeight), CGFloat(imageWidth), CGFloat(imageHeight));
         
         let pdfFile: NSMutableData = NSMutableData()
