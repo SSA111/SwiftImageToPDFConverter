@@ -20,7 +20,11 @@ extension NSData {
     class func convertImageToPDF(image: UIImage, resolution: Double) -> NSData? {
         return convertImageToPDF(image, horizontalResolution: resolution, verticalResolution: resolution)
     }
-
+    
+    class func convertMultipleImagesToPDF(image: [UIImage], resolution: Double) -> NSData?{
+        return convertMultipleImagesToPDF(image, horizontalResolution: resolution, verticalResolution: resolution)
+    }
+    
     class func convertImageToPDF(image: UIImage, horizontalResolution: Double, verticalResolution: Double) -> NSData? {
         
         if horizontalResolution <= 0 || verticalResolution <= 0 {
@@ -81,5 +85,37 @@ extension NSData {
         return pdfFile
     }
     
+    class func convertMultipleImagesToPDF(image: [UIImage], horizontalResolution: Double, verticalResolution: Double) -> NSData? {
+        
+        guard image.count<=0
+            else {
+                if horizontalResolution <= 0 || verticalResolution <= 0 {
+                    return nil;
+                }
+                
+                let pageWidth: Double = Double(image[0].size.width) * Double(image[0].scale) * Double(defaultResolution) / horizontalResolution
+                let pageHeight: Double = Double(image[0].size.height) * Double(image[0].scale) * Double(defaultResolution) / verticalResolution
+                
+                let pdfFile: NSMutableData = NSMutableData()
+                
+                let pdfConsumer: CGDataConsumerRef = CGDataConsumerCreateWithCFData(pdfFile as CFMutableDataRef)!
+                
+                var mediaBox: CGRect = CGRectMake(0, 0, CGFloat(pageWidth), CGFloat(pageHeight))
+                
+                let pdfContext: CGContextRef = CGPDFContextCreate(pdfConsumer, &mediaBox, nil)!
+                
+                for index  in 0...image.count-1 {
+                    CGContextBeginPage(pdfContext, &mediaBox)
+                    CGContextDrawImage(pdfContext, mediaBox, image[index].CGImage)
+                    CGContextEndPage(pdfContext)
+                    
+                }
+                
+                return pdfFile
+        }
+        return nil
+    }
+
+
     
 }
